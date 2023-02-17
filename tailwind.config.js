@@ -35,10 +35,11 @@ module.exports = {
           warning: "#FF7E12",
           error: "#FD3D51",
         },
-      fontFamily: {
-        sans: ["var(--font-notoSansKr)", ...fontFamily.sans],
+        fontFamily: {
+          sans: ["var(--font-notoSansKr)", ...fontFamily.sans],
+        },
       },
     },
+    plugins: [],
   },
-  plugins: [],
 };

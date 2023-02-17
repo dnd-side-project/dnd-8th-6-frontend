@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { fontFamily } = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
@@ -33,6 +35,8 @@ module.exports = {
           warning: "#FF7E12",
           error: "#FD3D51",
         },
+      fontFamily: {
+        sans: ["var(--font-notoSansKr)", ...fontFamily.sans],
       },
     },
   },

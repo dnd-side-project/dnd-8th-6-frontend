@@ -28,7 +28,7 @@ export const T2 = ({ children, className }: Props) => {
 };
 
 export const BT = ({ children, className }: Props) => {
-  return <span className={`font-bold text-base ${className}`}>{children}</span>;
+  return <span className={`font-medium text-base ${className}`}>{children}</span>;
 };
 
 export const CT = ({ children, className }: Props) => {

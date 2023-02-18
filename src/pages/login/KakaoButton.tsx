@@ -22,7 +22,7 @@ export default function KakaoButton() {
         aria-label="kakao-symbol-login"
         className="h-[18px] w-[18px]"
       />
-      <p className="w-full text-gray-10">카카오 로그인</p>
+      <p className="w-full text-gray-10">Login with Kakao</p>
     </button>
   )
 }

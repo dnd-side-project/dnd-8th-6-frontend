@@ -4,7 +4,7 @@ import KakaoSymbol from '@assets/kakao.svg'
 const { KAKAO_OAUTH_URL, KAKAO_REST_API_KEY } = process.env
 const KAKAO_REDIRECT_URL = `${KAKAO_OAUTH_URL}/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${window.location.origin}/login/KAKAO&response_type=code`
 
-export default function KakaoButton() {
+const KakaoButton = () => {
   const handleKakaoLogin = () => {
     try {
       window.location.replace(KAKAO_REDIRECT_URL)
@@ -26,3 +26,5 @@ export default function KakaoButton() {
     </button>
   )
 }
+
+export default KakaoButton;

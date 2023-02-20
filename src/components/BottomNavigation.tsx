@@ -26,23 +26,28 @@ const BottomNavigationItem = ({ href, text }: Props) => {
   }, [router.asPath]);
 
   return (
-    <Link href={href} className="flex flex-col gap-1 justify-center items-center">
+    <Link
+      href={href}
+      className={`flex flex-col gap-1 justify-center items-center ${
+        !isCurrentPage ? "opacity-50" : ""
+      }`}
+    >
       <div
-        className={`flex justify-center w-16 h-8 rounded-full ${isCurrentPage ? "bg-black" : ""}`}
+        className={`flex justify-center w-16 h-8 rounded-full ${
+          isCurrentPage ? "bg-tertiary-500" : "bg-transparent"
+        }`}
       >
-        {/* NOTE: 색상이 확정되지 않아 임의로 black div 삽입  */}
         <div className={`w-8 ${isCurrentPage ? "bg-blue-500" : "bg-green-500"}`} />
         {/* NOTE: 아이콘이 확정되지 않아 임시로 green&blue div 삽입  */}
       </div>
-      <T2 className={!isCurrentPage ? "text-green-500" : ""}>{text}</T2>
-      {/* NOTE: 색상이 확정되지 않아 임시로 green color 삽입  */}
+      <T2 className="text-neutral-0">{text}</T2>
     </Link>
   );
 };
 
 const BottomNavigation = () => {
   return (
-    <nav className="fixed left-0 bottom-0 w-full">
+    <nav className="fixed left-0 bottom-0 w-full bg-tertiary-700">
       <ul className="flex gap-4 w-full h-18 px-4 py-2">
         {NAV_ITEM_LIST.map(({ href, text }) => (
           <li className="w-full" key={text}>

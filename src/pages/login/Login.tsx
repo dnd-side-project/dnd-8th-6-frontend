@@ -1,6 +1,6 @@
 import React from 'react';
 import KakaoButton from './KakaoButton';
-import GithubButton from './GithubButton';
+import GithubButton from '../../components/GithubButton';
 
 const Login = () => {
   return (

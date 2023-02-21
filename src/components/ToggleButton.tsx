@@ -23,6 +23,11 @@ const Switch = ({ isChecked, onClick }: { isChecked: boolean; onClick: () => voi
   );
 };
 
+/**
+ *
+ * @param handleToggleOn on일때 실행할 함수
+ * @param handleToggleOff off일때 실행할 함수
+ */
 const ToggleButton = ({
   handleToggleOn,
   handleToggleOff,

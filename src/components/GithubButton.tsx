@@ -1,10 +1,12 @@
-import React from 'react'
-import GithubSymbol from '@/assets/github.svg'
+import React from 'react';
 
 import { H3 } from "./Text";
 
-const GITHUB_CLIENT_ID = process.env
-const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?scope=user:email&client_id=${GITHUB_CLIENT_ID}`
+import GithubSymbol from '@/assets/github.svg';
+
+
+const GITHUB_CLIENT_ID = process.env;
+const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?scope=user:email&client_id=${GITHUB_CLIENT_ID}`;
 
 const GithubButton = () => {
   const handleGithubLogin = () => {

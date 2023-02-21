@@ -1,7 +1,9 @@
-import React from 'react'
-import KakaoSymbol from '@/assets/kakao.svg'
+import React from 'react';
 
 import { H3 } from "./Text";
+
+import KakaoSymbol from '@/assets/kakao.svg';
+
 
 const { KAKAO_OAUTH_URL, KAKAO_REST_API_KEY } = process.env
 const KAKAO_REDIRECT_URL = `${KAKAO_OAUTH_URL}/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${window.location.origin}/login/KAKAO&response_type=code`

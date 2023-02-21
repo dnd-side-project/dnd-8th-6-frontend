@@ -16,26 +16,9 @@ declare global {
 }
 
 export default function App({ Component, pageProps }: AppProps) {
-<<<<<<< HEAD
-  useEffect(() => {
-    try {
-      if (!window.Kakao.isInitialized() && window.Kakao) {
-        window.Kakao.init(process.env.KAKAO_KEY);
-      }
-    } catch(e) { console.log(e)}
-
-  }, [])
-
-  return (
-    <>
-    <Component {...pageProps} />
-    </>
-  )
-=======
   return (
     <main className={`${notoSansKr.variable} font-sans`}>
       <Component {...pageProps} />
     </main>
   );
->>>>>>> 256c56548fa04d5b9529ca82a6ba35c8e1070054
 }

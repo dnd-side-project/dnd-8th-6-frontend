@@ -1,6 +1,8 @@
 import React from 'react'
 import GithubSymbol from '@/assets/github.svg'
 
+import { H3 } from "./Text";
+
 const GITHUB_CLIENT_ID = process.env
 const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?scope=user:email&client_id=${GITHUB_CLIENT_ID}`
 
@@ -23,7 +25,7 @@ const GithubButton = () => {
         aria-label="github-symbol-icon"
         className="h-[18px] w-[18px]"
       />
-      <p className="w-full text-black ">Login with GitHub</p>
+      <H3 className="w-full text-black ">Login with GitHub</H3>
     </button>
   )
 }

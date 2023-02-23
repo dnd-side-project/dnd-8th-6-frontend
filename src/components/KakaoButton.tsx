@@ -25,7 +25,8 @@ const KakaoButton = () => {
         onClick={handleKakaoLogin}
       >
         <KakaoSymbol aria-label="kakao-symbol-icon" className="w-8" />
-        <H3 className="flex">Login with Kakao</H3>
+        <span className="after:content-['|'] text-[#DFCA04]" />
+        <H3 className="grow">Login with Kakao</H3>
       </button>
     </div>
   );

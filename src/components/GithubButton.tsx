@@ -24,7 +24,8 @@ const GithubButton = () => {
         onClick={handleGithubLogin}
       >
         <GithubSymbol aria-label="github-symbol-icon" className="w-8" />
-        <H3 className="flex">Login with GitHub</H3>
+        <span className="after:content-['|'] text-neutral-300" />
+        <H3 className="grow">Login with GitHub</H3>
       </button>
     </div>
   );

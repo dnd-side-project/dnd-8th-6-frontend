@@ -18,7 +18,7 @@ const KakaoButton = () => {
   };
 
   return (
-    <div className="bg-[#FEE500] flex rounded-lg">
+    <div className="bg-[#FEE500] rounded-lg">
       <button
         aria-label="github-login-button"
         className="flex w-full border-none px-5 py-2.5 hover:cursor-pointer items-center justify-center"

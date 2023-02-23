@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 import { H3 } from "./Text";
 
@@ -8,9 +9,11 @@ const { KAKAO_OAUTH_URL, KAKAO_REST_API_KEY } = process.env;
 const KAKAO_REDIRECT_URL = `${KAKAO_OAUTH_URL}/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${window.location.origin}/login/KAKAO&response_type=code`;
 
 const KakaoButton = () => {
+  const router = useRouter();
+
   const handleKakaoLogin = () => {
     try {
-      window.location.replace(KAKAO_REDIRECT_URL);
+      router.replace(KAKAO_REDIRECT_URL);
     } catch (e) {
       alert("현재 카카오 로그인이 불가합니다. 나중에 다시 시도해주세요.");
     }

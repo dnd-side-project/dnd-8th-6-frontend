@@ -21,7 +21,7 @@ const buttonConfig = {
 
   // Sizes
   lg: "h-14 w-full rounded-2xl",
-  sm: "h-10 w-20 rounded-lg",
+  sm: "h-11 w-full rounded-lg",
 };
 
 const Button = ({ type = "primary", size = "lg", disabled, onClick, children }: Props) => {

@@ -18,7 +18,7 @@ const GithubButton = () => {
   }
 
   return (
-    <div className="w-[344px] rounded-lg">
+    <div className="bg-neutral-0 w-[344px] rounded-lg">
       <button
         aria-label="github-login-button"
         className="flex w-full border-none px-5 py-2.5 hover:cursor-pointer items-center"

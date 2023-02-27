@@ -24,7 +24,6 @@ const searchConfig = {
 };
 
 
-// HTMLInputElement
 const SearchBar = ({ buttonType = "cancel", onClick }: Props) => {
   const [isFocused, setIsFocused] = useState(true);
   const searchInput = useRef<HTMLInputElement>(null);

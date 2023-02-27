@@ -1,27 +1,71 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useRef, useState } from "react";
 
 import { T2 } from "@/components/Text";
-import SearchIcons from "@/assets/search.svg";
+import ActiveSearchIcon from "@/assets/search-active.svg";
+import InactiveSearchIcon from "@/assets/search-inactive.svg";
 
-const SearchBar = () => {
+
+interface Props {
+  buttonType: "search" | "cancel";
+  onClick: () => void;
+}
+
+const searchConfig = {
+  search: {
+    textColor: "text-neutral-0",
+    text: "검색",
+  },
+  cancel: {
+    textColor: "text-system-error",
+    text: "취소",
+  },
+};
+
+
+// HTMLInputElement
+const SearchBar = ({ buttonType = "cancel", onClick }: Props) => {
+  const [isFocused, setIsFocused] = useState(true);
+  const searchInput = useRef<HTMLInputElement>(null);
+
+  const handleFocus = () => {
+    searchInput.current?.focus();
+    setIsFocused(!isFocused);
+  };
+
+  const handleBlur = () => {
+    searchInput.current?.blur();
+    setIsFocused(!isFocused);
+  };
+
+
   return (
-    // height 64px던데 py-16?
-    <div className="flex items-center bg-tertiary-700">
-      <div className="flex">
-        <div className="flex opacity-50 my-3 px-4 rounded-lg">
-          <SearchIcons aria-label="search-icon" className=" w-6" />
+    <div className="flex bg-tertiary-700 w-full px-4 py-3">
+      <div ref={searchInput} className="opacity-50 bg-tertiary-500 rounded-md">
+        <div
+          className="flex items-center p-2 border-primary-400"
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        >
+          {isFocused ? (
+            <ActiveSearchIcon className="mr-2" />
+          ) : (
+            <InactiveSearchIcon className="mr-2" />
+          )}
           <input
-            className="w-full outline-none text-neutral-700 focus-visible:border-primary-400 mx-2"
+            className="outline-none text-neutral-0 bg-transparent"
             type="text"
             id="search"
-            placeholder="내용 검색"
+            placeholder="내용 입력"
           />
         </div>
       </div>
-      <div className="flex flex-end  ">
-        <T2 className=" text-system-error">취소</T2>
-      </div>
+      <button onClick={onClick}>
+        <T2 className={`px-4 text-neutral-0 ${searchConfig[buttonType].textColor}`}>
+          {searchConfig[buttonType].text}
+        </T2>
+      </button>
     </div>
   );
 };

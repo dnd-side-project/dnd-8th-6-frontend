@@ -5,7 +5,8 @@ import { H3 } from "./Text";
 
 import GithubSymbol from "@/assets/github.svg";
 
-const GITHUB_CLIENT_ID = process.env;
+
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?scope=user:email&client_id=${GITHUB_CLIENT_ID}`;
 
 const GithubButton = () => {
@@ -20,15 +21,17 @@ const GithubButton = () => {
   };
 
   return (
-    <button
-      aria-label="github-login-button"
-      className="flex h-12 w-full items-center rounded-md border-none bg-grey-1 px-5 hover:cursor-pointer"
-      onClick={handleGithubLogin}
-    >
-      <GithubSymbol aria-label="github-symbol-icon" className="h-[18px] w-[18px]" />
-      <H3 className="w-full text-black ">Login with GitHub</H3>
-    </button>
+    <div className="bg-neutral-0 w-[344px] rounded-lg">
+      <button
+        aria-label="github-login-button"
+        className="flex w-full border-none px-5 py-2.5 hover:cursor-pointer items-center"
+        onClick={handleGithubLogin}
+      >
+        <GithubSymbol aria-label="github-symbol-icon" className="w-9" />
+        <H3 className="w-full text-black">Login with GitHub</H3>
+      </button>
+    </div>
   );
-};
+}
 
 export default GithubButton;

@@ -1,52 +1,67 @@
+import { useState } from "react";
+
 import Button from "./Button";
 import { T1, T2 } from "./Text";
 
 interface Props {
-  isSingleButton?: boolean;
+  open: boolean;
+  buttonType: "single" | "dual";
   title: string;
   description?: string;
-  mainButtonText: string;
-  subButtonText?: string;
-  mainOnClick: () => void;
-  subOnClick?: () => void;
+  onButtonClick: () => void;
+  onClose: () => void;
 }
 
+/**
+ *
+ * @param open 모달이 켜지고 꺼질 상태
+ * @param buttonType "single" | "dual"
+ * @param title 모달의 메인 텍스트
+ * @param description 모달의 서브 텍스트
+ * @param onButtonClick 모달 버튼을 눌렀을 때 실행할 함수
+ * @param onClose 모달을 켜고 끄기위한 상태 변경 함수
+ */
 const Modal = ({
-  isSingleButton,
+  open,
+  buttonType = "single",
   title,
   description,
-  mainButtonText,
-  subButtonText,
-  mainOnClick,
-  subOnClick,
+  onButtonClick,
+  onClose,
 }: Props) => {
-  if (!isSingleButton && !(subButtonText && subOnClick)) {
-    throw new Error("버튼이 두개일 경우, subButtonText와 subOnClick이 필수입니다.");
+  const onMaskClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  if (!open) {
+    return <></>;
   }
 
   return (
-    <div className="flex items-center justify-center w-full h-screen">
+    <div
+      className="flex items-center justify-center w-full h-screen bg-black/20"
+      onClick={onMaskClick}
+    >
       <div className="flex flex-col items-center w-[382px] bg-tertiary-700 px-4 pt-8 pb-4 rounded-2xl gap-8">
         <div className="flex flex-col items-center gap-2">
           <T1>{title}</T1>
           <T2 className="opacity-60">{description}</T2>
         </div>
-        {isSingleButton ? (
-          <Button type="primary" size="sm" onClick={mainOnClick}>
-            {mainButtonText}
+        {buttonType === "single" ? (
+          <Button type="primary" size="sm" onClick={onButtonClick}>
+            확인
           </Button>
         ) : (
-          subButtonText &&
-          subOnClick && (
-            <div className="flex w-full gap-2">
-              <Button type="secondary" size="sm" onClick={subOnClick}>
-                {subButtonText}
-              </Button>
-              <Button type="primary" size="sm" onClick={mainOnClick}>
-                {mainButtonText}
-              </Button>
-            </div>
-          )
+          <div className="flex w-full gap-2">
+            <Button type="secondary" size="sm" onClick={onClose}>
+              취소
+            </Button>
+            <Button type="primary" size="sm" onClick={onButtonClick}>
+              확인
+            </Button>
+          </div>
         )}
       </div>
     </div>

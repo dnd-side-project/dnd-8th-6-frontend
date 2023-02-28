@@ -4,7 +4,7 @@ interface Props {
   type?: "primary" | "secondary";
   size?: "lg" | "sm";
   disabled?: boolean;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => void;
   children: string;
 }
 

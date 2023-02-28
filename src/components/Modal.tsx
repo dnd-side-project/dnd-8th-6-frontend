@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import Button from "./Button";
 import { T1, T2 } from "./Text";
 

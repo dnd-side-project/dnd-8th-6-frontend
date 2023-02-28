@@ -13,25 +13,22 @@ const KakaoButton = () => {
 
   const handleKakaoLogin = () => {
     try {
-      router.replace(KAKAO_REDIRECT_URL)
+      window.location.replace(KAKAO_REDIRECT_URL);
     } catch (e) {
-      alert("현재 카카오 로그인이 불가합니다. 나중에 다시 시도해주세요.")
+      alert("현재 카카오 로그인이 불가합니다. 나중에 다시 시도해주세요.");
     }
-  }
-  
+  };
 
   return (
-    <div className="bg-[#FEE500] w-[344px] rounded-lg">
-      <button
-        aria-label="github-login-button"
-        className="flex w-full border-none px-5 py-2.5 hover:cursor-pointer items-center"
-        onClick={handleKakaoLogin}
-      >
-        <KakaoSymbol aria-label="kakao-symbol-icon" className="w-9" />
-        <H3 className="w-full text-black">Login with Kakao</H3>
-      </button>
-    </div>
+    <button
+      aria-label="kakao-login-button"
+      className="flex h-12 w-full items-center rounded-md border-none bg-kakao px-5 hover:cursor-pointer"
+      onClick={handleKakaoLogin}
+    >
+      <KakaoSymbol aria-label="kakao-symbol-login" className="h-[18px] w-[18px]" />
+      <H3 className="w-full text-gray-10">Login with Kakao</H3>
+    </button>
   );
-}
+};
 
 export default KakaoButton;

@@ -1,16 +1,12 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 
-import { T2 } from "@/components/Text";
 import ActiveSearchIcon from "@/assets/search-active.svg";
 import InactiveSearchIcon from "@/assets/search-inactive.svg";
-
+import { T2 } from "@/components/Text";
 
 interface Props {
   buttonType: "search" | "cancel";
   onClick: () => void;
-  inputRef: HTMLInputElement;
 }
 
 const searchConfig = {
@@ -24,7 +20,7 @@ const searchConfig = {
   },
 };
 
-const SearchBar = ({ buttonType = "cancel", onClick, inputRef }: Props) => {
+const SearchBar = forwardRef<HTMLInputElement, Props>(({ buttonType = "cancel", onClick }, ref) => {
   const [isFocused, setIsFocused] = useState(true);
   const searchDiv = useRef<HTMLInputElement>(null);
 
@@ -56,7 +52,7 @@ const SearchBar = ({ buttonType = "cancel", onClick, inputRef }: Props) => {
             type="text"
             id="search"
             placeholder="내용 입력"
-            ref={inputRef}
+            ref={ref}
           />
         </div>
       </div>
@@ -67,6 +63,7 @@ const SearchBar = ({ buttonType = "cancel", onClick, inputRef }: Props) => {
       </button>
     </div>
   );
-};
+});
 
+SearchBar.displayName = "SearchBar";
 export default SearchBar;

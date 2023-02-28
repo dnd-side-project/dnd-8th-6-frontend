@@ -17,8 +17,7 @@ const NavigationBar = ({ children }: Props) => {
       <H2 className="text-neutral-0 grow">ccc</H2>
       <div className="flex flex-end items-center space-x-5">
         {isSearch && <SearchIcon />}
-        <SearchIcon className="w-full" />
-        <MenuIcon className="w-full" />
+        <MenuIcon />
       </div>
     </div>
   );

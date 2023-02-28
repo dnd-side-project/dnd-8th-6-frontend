@@ -53,7 +53,7 @@ const SearchBar = ({ buttonType = "cancel", onClick }: Props) => {
             <InactiveSearchIcon className="mr-2" />
           )}
           <input
-            className="outline-none text-neutral-0 bg-transparent"
+            className="w-full outline-none text-neutral-0 bg-transparent"
             type="text"
             id="search"
             placeholder="내용 입력"

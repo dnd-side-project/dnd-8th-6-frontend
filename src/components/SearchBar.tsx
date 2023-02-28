@@ -10,6 +10,7 @@ import InactiveSearchIcon from "@/assets/search-inactive.svg";
 interface Props {
   buttonType: "search" | "cancel";
   onClick: () => void;
+  inputRef: HTMLInputElement;
 }
 
 const searchConfig = {
@@ -23,25 +24,23 @@ const searchConfig = {
   },
 };
 
-
-const SearchBar = ({ buttonType = "cancel", onClick }: Props) => {
+const SearchBar = ({ buttonType = "cancel", onClick, inputRef }: Props) => {
   const [isFocused, setIsFocused] = useState(true);
-  const searchInput = useRef<HTMLInputElement>(null);
+  const searchDiv = useRef<HTMLInputElement>(null);
 
   const handleFocus = () => {
-    searchInput.current?.focus();
+    searchDiv.current?.focus();
     setIsFocused(!isFocused);
   };
 
   const handleBlur = () => {
-    searchInput.current?.blur();
+    searchDiv.current?.blur();
     setIsFocused(!isFocused);
   };
 
-
   return (
     <div className="flex bg-tertiary-700 w-full px-4 py-3">
-      <div ref={searchInput} className="opacity-50 bg-tertiary-500 rounded-md">
+      <div ref={searchDiv} className="opacity-50 bg-tertiary-500 rounded-md">
         <div
           className="flex items-center p-2 border-primary-400"
           onFocus={handleFocus}
@@ -57,6 +56,7 @@ const SearchBar = ({ buttonType = "cancel", onClick }: Props) => {
             type="text"
             id="search"
             placeholder="내용 입력"
+            ref={inputRef}
           />
         </div>
       </div>

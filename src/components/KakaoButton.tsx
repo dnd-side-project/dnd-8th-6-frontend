@@ -13,7 +13,7 @@ const KakaoButton = () => {
 
   const handleKakaoLogin = () => {
     try {
-      window.location.replace(KAKAO_REDIRECT_URL);
+      router.replace(KAKAO_REDIRECT_URL);
     } catch (e) {
       alert("현재 카카오 로그인이 불가합니다. 나중에 다시 시도해주세요.");
     }

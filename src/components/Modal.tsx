@@ -39,10 +39,10 @@ const Modal = ({
 
   return (
     <div
-      className="flex items-center justify-center w-full h-screen bg-black/20"
+      className="flex items-center justify-center w-full h-screen bg-black/20 px-4"
       onClick={onMaskClick}
     >
-      <div className="flex flex-col items-center w-[382px] bg-tertiary-700 px-4 pt-8 pb-4 rounded-2xl gap-8">
+      <div className="flex flex-col items-center max-w-[382px] w-full bg-tertiary-700 px-4 pt-8 pb-4 rounded-2xl gap-8">
         <div className="flex flex-col items-center gap-2">
           <T1>{title}</T1>
           <T2 className="opacity-60">{description}</T2>

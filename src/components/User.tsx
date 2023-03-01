@@ -29,7 +29,7 @@ export const UserCard = ({ type, rank, nickname, subtitle, isFollowed }: Props) 
           </div>
           <div className="flex gap-4 p-4 w-full rounded-2xl bg-gradient-to-r from-primary-400 to-primary-200/30">
             <div className="w-12 h-12 rounded-full bg-neutral-0" />
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 grow">
               <H4>{nickname}</H4>
               <T2 className="opacity-50">{subtitle}</T2>
             </div>
@@ -45,9 +45,9 @@ export const UserCard = ({ type, rank, nickname, subtitle, isFollowed }: Props) 
             <div className="w-3 h-3 bg-primary-400" />
             {/* NOTE: 아이콘이 확정되지 않아 임시로 blue div 삽입  */}
           </div>
-          <div className="flex gap-4 p-4 w-full rounded-2xl bg-tertiary-700">
+          <div className="flex gap-4 p-4 w-full rounded-2xl bg-tertiary-700 items-center">
             <div className="w-12 h-12 rounded-full bg-neutral-0" />
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 grow">
               <H4>{nickname}</H4>
               <T2 className="opacity-50">{subtitle}</T2>
             </div>

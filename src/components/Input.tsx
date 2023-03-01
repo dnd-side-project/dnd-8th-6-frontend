@@ -63,7 +63,7 @@ export const Input = ({
   }, [isWarning, isError, isSuccess]);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className={`flex flex-col gap-2 ${isDisabled ? "opacity-30" : null}`}>
       <label>
         <T2>{label}</T2>
       </label>
@@ -127,7 +127,7 @@ export const Textfield = ({
   }, [isWarning, isError, isSuccess]);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className={`flex flex-col gap-2 ${isDisabled ? "opacity-30" : null}`}>
       <label>
         <T2>{label}</T2>
       </label>

@@ -1,6 +1,15 @@
 import Head from "next/head";
+import { useForm } from "react-hook-form";
+
+import { FormValuesProps, Input, Textfield } from "@/components/Input";
+import { H1 } from "@/components/Text";
 
 export default function Home() {
+  const { register, handleSubmit, watch } = useForm<FormValuesProps>();
+  const watchAllFields = watch("소개글");
+
+  const onSubmit = handleSubmit((data) => console.log(data));
+
   return (
     <>
       <Head>
@@ -9,6 +18,17 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <H1 className="text-black">asdfasdfas</H1>
+      <form onSubmit={onSubmit}>
+        <Input placeholder="asdfasd" label="닉네임" register={register} required />
+        <Textfield
+          placeholder="asdfasd"
+          label="소개글"
+          register={register}
+          required
+          currentLength={watchAllFields?.length ?? 0}
+        />
+      </form>
     </>
   );
 }

@@ -4,6 +4,6 @@
 
 @layer base {
   * {
-    @apply text-neutral-0;
+    @apply text-neutral-0 bg-red-300;
   }
 }

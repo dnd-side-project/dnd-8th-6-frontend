@@ -47,7 +47,7 @@ const SearchBar = forwardRef<HTMLInputElement, Props>(
           onFocus={onFocus}
           onBlur={onBlur}
           className={`bg-tertiary-500/50 rounded-md ${
-            isFocused ? "border border-primary-400" : ""
+            isFocused ? "ring-inset ring-1 ring-primary-400" : ""
           }`}
         >
           <div className="flex items-center p-2 gap-2">

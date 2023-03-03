@@ -2,8 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .background-linear {
+    @apply bg-gradient-to-l from-tertiary-900 via-[#141728] to-tertiary-900;
+  }
+}
+
 @layer base {
   * {
     @apply text-neutral-0;
+  }
+  html {
+    @apply background-linear;
   }
 }

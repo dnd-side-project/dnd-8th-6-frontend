@@ -10,9 +10,9 @@ interface ChartDataProps {
   series: number[];
 }
 
-const MainChart: Props = () => {
-  const [chartData, setChartData] = useState<ChartDataProps>({
-    series: [30],
+const MainChart = ({data}: {data: number[]}) => {
+  const [chartData, _] = useState<ChartDataProps>({
+    series: {data},
     options: {
       chart: {
         height: 232,

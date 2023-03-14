@@ -27,7 +27,7 @@ const BlogStats = ({ blogName, totalArticles, value, isBlogConnected, onClick }:
       <div className="flex justify-between items-center shrink-0 w-full ">
         <div className="flex flex-col ">
           <H2>{blogName} name</H2>
-          <H4 className="opacity-50 mt-2">{totalArticles}ddd Posts</H4>
+          <H4 className="opacity-50 mt-2">{totalArticles} Posts</H4>
         </div>
         <div className="flex justify-center items-center bg-primary-400 w-10 h-10 rounded-full">
           <TistoryIcon />

@@ -1,4 +1,7 @@
-import { H2, H4, T1 } from "./Text";
+import Link from "next/link";
+
+import { H2, H4, T1, T2 } from "./Text";
+import Button from "./Button";
 
 import TistoryIcon from "@/assets/tistory-icon.svg";
 // 네이버블로그, 벨로그 임포트 필요
@@ -14,10 +17,12 @@ interface Props {
   blogName: string;
   totalArticles: number;
   value: string;
+  isBlogConnected: boolean;
+  onClick: (e: React.MouseEvent) => void;
 }
 
-const BlogStats = ({ blogName, totalArticles, value }: Props) => {
-  return (
+const BlogStats = ({ blogName, totalArticles, value, isBlogConnected, onClick }: Props) => {
+  return isBlogConnected ? (
     <div className=" w-full h-full p-6 bg-tertiary-700 rounded-2xl">
       <div className="flex justify-between items-center shrink-0 w-full ">
         <div className="flex flex-col ">
@@ -28,8 +33,8 @@ const BlogStats = ({ blogName, totalArticles, value }: Props) => {
           <TistoryIcon />
         </div>
       </div>
-      <div className="border-t border-[#2B3752] mt-6 mb-2" />
-      {BLOG_INFO_LIST.map(title => {
+      <div className="border-t border-tertiary-500 mt-6 mb-2" />
+      {BLOG_INFO_LIST.map((title) => {
         return (
           <div className="flex justify-between w-full py-4" key={title}>
             <T1 className="opacity-50">{title}</T1>
@@ -37,6 +42,21 @@ const BlogStats = ({ blogName, totalArticles, value }: Props) => {
           </div>
         );
       })}
+    </div>
+  ) : (
+    <div className="text-center w-full h-full">
+      <div className="flex flex-col p-6 bg-tertiary-700 rounded-t-2xl">
+        <T1 className="opacity-50">블로그 내용이 없어요!</T1>
+        <T1 className="opacity-50">블로그를 추가해보시겠어요?</T1>
+      </div>
+      <div className="p-4 bg-tertiary-900 rounded-b-2xl">
+        <Button onClick={onClick}>추가하기</Button>
+        <Link href="/">
+          <div className="pt-4">
+            <T2 className="opacity-50">다시 보지 않기</T2>
+          </div>
+        </Link>
+      </div>
     </div>
   );
 };

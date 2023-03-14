@@ -10,11 +10,11 @@ interface ChartDataProps {
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const GithubYearChart: Props = () => {
-  const [chartData, setChartData] = useState<ChartDataProps>({
+const GithubYearChart = ({data : {data: number[]}}) => {
+  const [chartData, _] = useState<ChartDataProps>({
     series: [
       {
-        data: [44, 55, 66, 77, 88, 99, 11, 22, 33, 53, 81, 40],
+        data: {data},
       },
     ],
     options: {

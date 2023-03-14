@@ -3,6 +3,16 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Noto_Sans_KR } from "@next/font/google";
 
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import initMockAPI from "@/mocks";
 
 if (process.env.NODE_ENV === "development") {
@@ -23,8 +33,10 @@ declare global {
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${notoSansKr.variable} font-sans`}>
-      <Component {...pageProps} />
-    </main>
+    <QueryClientProvider client={client}>
+      <main className={`${notoSansKr.variable} font-sans`}>
+        <Component {...pageProps} />
+      </main>
+    </QueryClientProvider>
   );
 }

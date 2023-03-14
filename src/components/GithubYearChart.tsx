@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { Props } from "react-apexcharts";
-import ApexOptions from "react-apexcharts";
 
 interface ChartDataProps {
   options?: object;
-  series: object[] | any;
+  series?: object[] | any;
 }
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const GithubYearChart = ({data : {data: number[]}}) => {
+const GithubYearChart = ({ data }: { data: number[] }) => {
+  const [seriesArr, setSeriesArr] = useState<number[]>([]);
+  
+  useEffect(() => {
+    seriesArr && setSeriesArr(data);
+  }, [seriesArr]);
+  
   const [chartData, _] = useState<ChartDataProps>({
     series: [
       {
-        data: {data},
+        data: seriesArr,
       },
     ],
     options: {

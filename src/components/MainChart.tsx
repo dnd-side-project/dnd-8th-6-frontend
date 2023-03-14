@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { Props } from "react-apexcharts";
-import ApexOptions from "react-apexcharts";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -10,9 +8,15 @@ interface ChartDataProps {
   series: number[];
 }
 
-const MainChart = ({data}: {data: number[]}) => {
-  const [chartData, _] = useState<ChartDataProps>({
-    series: {data},
+const MainChart = ({ data }: {data: number}) => {
+  const [seriesNum, setSeriesNum] = useState<number>(0);
+
+  useEffect(() => {
+    seriesNum && setSeriesNum(data);
+  }, [seriesNum]);
+  
+  const [chartData] = useState<ChartDataProps>({
+    series: [seriesNum],
     options: {
       chart: {
         height: 232,

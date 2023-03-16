@@ -28,7 +28,6 @@ const GRADE_LIST = [
 
 const home = ({ chartData, yearData }: ChartProps) => {
   return (
-    <div className="w-[367px] m-auto">
       <div className="flex flex-col">
         <div className="flex px-5 py-4">
           <CodeVsIcon />
@@ -49,7 +48,6 @@ const home = ({ chartData, yearData }: ChartProps) => {
           <GithubYearChart data={yearData} />
         </div>
       </div>
-    </div>
   );
 };
 

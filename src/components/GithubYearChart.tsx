@@ -24,11 +24,10 @@ const GithubYearChart = ({ data }: { data: number[] }) => {
     for (let i = 0; i < 12; i++) {
       if (todayMonth + i <= 12) {
         temp = todayMonth + i;
-        categories[i] = temp.toString();
       } else {
         temp = todayMonth + i - 12;
-        categories[i] = temp.toString();
       }
+      categories[i] = temp.toString();
     }
     return categories;
   };

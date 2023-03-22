@@ -10,10 +10,28 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const GithubYearChart = ({ data }: { data: number[] }) => {
   const [seriesArr, setSeriesArr] = useState<number[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
   
   useEffect(() => {
     seriesArr && setSeriesArr(data);
+    categories && setCategories(getCategories());
   }, [seriesArr]);
+
+  const getCategories = () => {
+    const todayMonth = new Date().getMonth() + 1;
+    const categories = [];
+    let temp;
+    for (let i = 0; i < 12; i++) {
+      if (todayMonth + i <= 12) {
+        temp = todayMonth + i;
+        categories[i] = temp.toString();
+      } else {
+        temp = todayMonth + i - 12;
+        categories[i] = temp.toString();
+      }
+    }
+    return categories;
+  };
   
   const [chartData, _] = useState<ChartDataProps>({
     series: [
@@ -68,7 +86,7 @@ const GithubYearChart = ({ data }: { data: number[] }) => {
         axisTicks: {
           show: false,
         },
-        categories: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+        categories: categories,
         labels: {
           style: {
             colors: "#ffffff",

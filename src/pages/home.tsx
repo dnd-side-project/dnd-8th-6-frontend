@@ -5,7 +5,7 @@ import GithubYearChart from "../components/GithubYearChart";
 import { Card, CardList } from "../components/GitHubStats";
 import { H4 } from "../components/Text";
 
-import CodeVsIcon from "@/assets/codeVs-typo.svg";
+import CodeVsIcon from "@/assets/CodeVs-typo.svg";
 import GoldGrade from "@/assets/gold.svg";
 import PlatinumGrade from "@/assets/platinum.svg";
 import DiaGrade from "@/assets/dia.svg";

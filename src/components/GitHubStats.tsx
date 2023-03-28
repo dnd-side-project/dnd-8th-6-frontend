@@ -13,7 +13,7 @@ export const Card = ({ title, value }: Props) => {
       <div className="gap-2">
         <H4 className="opacity-50">{title}</H4>
         <H1>{value}</H1>
-      </div>
+      </div> 
     </div>
   );
 };

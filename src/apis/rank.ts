@@ -7,6 +7,6 @@ export const putStar = async (query: number) => {
 };
 
 export const getRank = async ({ filter, pageParam }: { filter: Filter; pageParam: number }) => {
-  const res = await authInstance.get(`/rank?filter=${filter}&page=${pageParam}`);
+  const res = await authInstance.get(`/rank?page=${pageParam}&filter=${filter}`);
   return res;
 };

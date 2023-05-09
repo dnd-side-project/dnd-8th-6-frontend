@@ -15,36 +15,24 @@ export enum Filter {
 }
 
 interface ItemProps {
-  rank: number;
-  nickname: string;
-  subtitle: string;
-  isFollowed: boolean;
-  id: number;
+  ranking: number;
+  name: string;
+  dataLog: string;
+  starId: number | null;
+  memberId: number;
+  upDown: "unchanged" | "up" | "down";
+  profileImageUrl: string;
 }
-// const mock = [
-//   { nickname: "asdf1", subtitle: "asdf1", rank: 1, isFollowed: false, id: 1 },
-//   { nickname: "asdf2", subtitle: "asdf2", rank: 2, isFollowed: false, id: 2 },
-//   { nickname: "asdf3", subtitle: "asdf3", rank: 3, isFollowed: true, id: 3 },
-//   { nickname: "asdf3", subtitle: "asdf3", rank: 4, isFollowed: true, id: 4 },
-//   { nickname: "asdf3", subtitle: "asdf3", rank: 5, isFollowed: false, id: 5 },
-//   { nickname: "asdf3", subtitle: "asdf3", rank: 6, isFollowed: true, id: 6 },
-//   { nickname: "asdf3", subtitle: "asdf3", rank: 7, isFollowed: false, id: 7 },
-//   { nickname: "asdf3", subtitle: "asdf3", rank: 8, isFollowed: false, id: 8 },
-//   { nickname: "asdf3", subtitle: "asdf3", rank: 9, isFollowed: false, id: 9 },
-// ];
 
 const Rank: NextPage = () => {
-  const [filter, setFilter] = useState<Filter>(Filter.STAR);
-  // const [pageCount, setPageCount] = useState<number>(0);
+  const [filter, setFilter] = useState<Filter>(Filter.COMMIT);
 
-  const { data, fetchNextPage, status } = useInfiniteQuery(
+  const { data, fetchNextPage, status, hasNextPage } = useInfiniteQuery(
     ["infiniteData", filter],
     ({ pageParam = 1 }) => getRank({ filter, pageParam }),
     {
-      getNextPageParam: (lastPage) => {
-        // setPageCount((prev) => prev++);
-        // return pageCount + 1;
-        // lastPage.page
+      getNextPageParam: (lastPage, allPages) => {
+        return lastPage.data.rankData.length < 20 ? undefined : allPages.length + 1;
       },
     },
   );
@@ -59,7 +47,7 @@ const Rank: NextPage = () => {
     setFilter(filterType);
   };
 
-  console.log(data);
+  const myData = data?.pages[0].data.hostRank;
 
   return (
     <>
@@ -74,33 +62,72 @@ const Rank: NextPage = () => {
       </NavigationBar>
       <KakaoButton />
       <UserCardList>
-        {/* {data?.pages.map((page) => {
-          return page.map((item: ItemProps) => {
-            <UserCard
-              key={item.id}
-              id={item.id}
-              type="rank"
-              rank={item.rank}
-              nickname={item.nickname}
-              subtitle={item.subtitle}
-              isFollowed={item.isFollowed}
-            />;
-          });
-        })} */}
-        {/* {mock.map((item: ItemProps) => {
-          return (
-            <UserCard
-              key={item.id}
-              id={item.id}
-              type="rank"
-              rank={item.rank}
-              nickname={item.nickname}
-              subtitle={item.subtitle}
-              isFollowed={item.isFollowed}
-            />
-          );
-        })} */}
-        {/* <div ref={setTarget}></div> */}
+        {status === "loading" && <p>불러오는 중</p>}
+        {status === "error" && <p>bb</p>}
+        {status === "success" && (
+          <div className="flex justify-center items-end w-full gap-6 bottom-4">
+            {data?.pages.map((page) => {
+              return page.data.rankData.map((item: ItemProps) => {
+                return item.ranking < 4 ? (
+                  <UserCard
+                    key={item.memberId}
+                    memberId={item.memberId}
+                    type="rank"
+                    ranking={item.ranking}
+                    nickname={item.name}
+                    upDown={item.upDown}
+                    subtitle={item.dataLog}
+                    isFollowed={item.starId !== null}
+                    profileImageUrl={item.profileImageUrl}
+                    className={item.ranking === 2 ? "order-first " : ""}
+                  />
+                ) : (
+                  <></>
+                );
+              });
+            })}
+          </div>
+        )}
+        {status === "success" && (
+          <UserCard
+            key={myData.memberId}
+            memberId={myData.memberId}
+            type="myRank"
+            ranking={myData.ranking}
+            nickname={myData.name}
+            upDown={myData.upDown}
+            subtitle={myData.dataLog}
+            profileImageUrl={myData.profileImageUrl}
+            className="sticky top-0"
+          />
+        )}
+        {status === "success" &&
+          data?.pages.map((page) => {
+            return page.data.rankData.map((item: ItemProps) => {
+              console.log(item);
+              return item.ranking > 3 ? (
+                <UserCard
+                  key={item.memberId}
+                  memberId={item.memberId}
+                  type="rank"
+                  ranking={item.ranking}
+                  nickname={item.name}
+                  upDown={item.upDown}
+                  subtitle={item.dataLog}
+                  isFollowed={item.starId !== null}
+                  profileImageUrl={item.profileImageUrl}
+                />
+              ) : (
+                <></>
+              );
+            });
+          })}
+        {status === "success" && hasNextPage && (
+          <div
+            style={{ width: "100vw", height: "10px", backgroundColor: "red" }}
+            ref={status === "success" ? setTarget : null}
+          ></div>
+        )}
       </UserCardList>
     </>
   );

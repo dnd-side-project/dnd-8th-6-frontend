@@ -7,7 +7,7 @@ interface Props {
   threshold?: number;
 }
 
-const useObserver = ({ onIntersect, root, rootMargin = "0px", threshold = 0 }: Props) => {
+const useObserver = ({ onIntersect, root, rootMargin = "0px", threshold = 1 }: Props) => {
   const [target, setTarget] = useState<HTMLElement | null | undefined>(null);
 
   useEffect(() => {
